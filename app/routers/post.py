@@ -11,7 +11,7 @@ router = APIRouter(
 )
 
 @router.get("/", response_model=List[schemas.Post])
-def get_posts(db: Session = Depends(get_db), user_id: int = Depends(oauth2.get_current_user)):
+def get_posts(db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
     # cursor.execute("""SELECT * FROM posts """)
     # posts = cursor.fetchall()
 
@@ -31,7 +31,7 @@ def create_posts(post: schemas.PostCreate, db: Session = Depends(get_db), curren
 
 
 @router.get("/{id}", response_model=schemas.Post)
-def get_post(id: int, db: Session = Depends(get_db), user_id: int = Depends(oauth2.get_current_user)):
+def get_post(id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
     # post = find_post(id)
     post = db.query(models.Post).filter(models.Post.id == id).first()
 
@@ -47,13 +47,12 @@ def delete_post(id: int, db: Session = Depends(get_db), current_user: int = Depe
     
     post_query = db.query(models.Post).filter(models.Post.id == id)
     post = post_query.first()
-    # print(current_user.id)
-    
+
     # print(post.owner_id)
     if post == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"post with id: {id} not exist")
     
-    if post.owner_id != current_user.id:
+    if post.owner_id != int(current_user.id):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not authorized to perform requested action")
         
     post_query.delete(synchronize_session=False)
@@ -73,7 +72,7 @@ def update_post(id: int, updated_post: schemas.PostCreate, db: Session = Depends
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"post with id: {id} not exist")
 
-    if post.owner_id != current_user.id:
+    if post.owner_id != int(current_user.id):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail="Not authorized to perform requested action")
         
