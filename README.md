@@ -37,7 +37,7 @@ uvicorn app.main:app --reload
 7. Access the application by visiting [Localhost](http://localhost:8000) in your web browser.
 
 ## API Documentation
-The project provides API endpoints for user authentication and blog post management. The API documentation can be accessed by visiting http://localhost:8000/docs when the server is running.
+The project provides API endpoints for user authentication and blog post management. The API documentation can be accessed by visiting [docs](http://localhost:8000/docs) when the server is running.
 
 ## Contributing
 Contributions to the Webstack-Project are welcome! If you find any issues or have improvements to suggest, please open an issue or submit a pull request on the GitHub repository.
