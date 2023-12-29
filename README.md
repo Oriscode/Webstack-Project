@@ -34,7 +34,7 @@ alembic upgrade head
 ```
 uvicorn app.main:app --reload
 ```
-7. Access the application by visiting [FastAPI_Server](http://localhost:8000) in your web browser.
+7. Access the application by visiting [Localhost](http://localhost:8000) in your web browser.
 
 ## API Documentation
 The project provides API endpoints for user authentication and blog post management. The API documentation can be accessed by visiting http://localhost:8000/docs when the server is running.
