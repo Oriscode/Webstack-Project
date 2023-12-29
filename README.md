@@ -10,26 +10,30 @@ Welcome to the Webstack-Project repository! This project is a social media blog 
 To set up the project locally, follow these steps:
 
 1. Clone the repository:
-``` git clone https://github.com/Oriscode/Webstack-Project.git ```
-
+```
+git clone https://github.com/Oriscode/Webstack-Project.git
+```
 2. Navigate to the project directory:
 ```
 cd Webstack-Project
 ```
 3. Install the required dependencies. It is recommended to use a virtual environment:
+```
 python -m venv venv
 source venv/bin/activate  # For Unix/Linux
 venv\Scripts\activate  # For Windows
 pip install -r requirements.txt
-
+```
 4. Configure the PostgreSQL database. Create a PostgreSQL database and update the necessary configuration settings in the config.py file.
 
 5. Run the database migrations:
+```
 alembic upgrade head
-
+```
 6. Start the FastAPI server:
+```
 uvicorn app.main:app --reload
-
+```
 7. Access the application by visiting http://localhost:8000 in your web browser.
 
 ## API Documentation
